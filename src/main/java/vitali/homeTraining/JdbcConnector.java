@@ -3,10 +3,7 @@ package vitali.homeTraining;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 public class JdbcConnector {
@@ -17,17 +14,43 @@ public class JdbcConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String driver = properties.getProperty("driver");
-        if (driver != null) {
-            Class.forName(driver) ;
-        }
+//        String driver = properties.getProperty("driver");
+//        if (driver != null) {
+//            Class.forName(driver) ;
+//        }
 
         String url = properties.getProperty("url");
-        String username = properties.getProperty("username");
-        String password = properties.getProperty("password");
+        String username = properties.getProperty("user");
+        String password = properties.getProperty("pass");
 
         Connection connection = DriverManager.getConnection(url, username, password);
 
         Statement statement = connection.createStatement();
+
+        ResultSet results = statement.executeQuery("select * from actor");
+
+//        while (results.next()) {
+//            int id = results.getInt(1);
+//            String name = results.getString(2);
+//            System.out.println(results.getRow() + ". " + id + "\t" + name);
+//        }
+
+        System.out.println(results.getRow());           // 0
+        System.out.println(results.isBeforeFirst());    // true
+        System.out.println(results.isFirst());          // false
+
+        results.next();
+
+        System.out.println(results.getRow());           // 1
+        System.out.println(results.isBeforeFirst());    // false
+        System.out.println(results.isFirst());          // true
+
+        results.next();
+
+        System.out.println(results.getRow());           // 2
+        System.out.println(results.isBeforeFirst());    // false
+        System.out.println(results.isFirst());          // false
+
+        connection.close();
     }
 }
