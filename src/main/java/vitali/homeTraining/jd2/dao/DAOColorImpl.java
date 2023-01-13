@@ -1,4 +1,4 @@
-package vitali.homeTraining.dao;
+package vitali.homeTraining.jd2.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;

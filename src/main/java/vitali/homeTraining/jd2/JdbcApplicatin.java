@@ -1,4 +1,4 @@
-package vitali.homeTraining;
+package vitali.homeTraining.jd2;
 
 import java.sql.*;
 
