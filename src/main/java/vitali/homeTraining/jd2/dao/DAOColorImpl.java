@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DAOColorImpl implements DAOColor {
+
+
+
     @Override
     public Color save(Color color) throws SQLException {
         Properties properties = new Properties();
